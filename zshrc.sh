@@ -2,6 +2,10 @@
 
 # Change this to reflect your installation directory
 export __GIT_PROMPT_DIR=~/.zsh/git-prompt
+
+# Change to true if you are using a mac with the macport version of zsh
+local isMac=false
+
 # Initialize colors.
 autoload -U colors
 colors
@@ -9,15 +13,27 @@ colors
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
-## Enable auto-execution of functions.
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
+if $isMac; then
+    function preexec() {
+        preexec_update_git_vars $@;
+    }
+    function precmd() {
+        precmd_update_git_vars $@;
+    }
+    function chpwd() {
+        chpwd_update_git_vars $@;
+    }
+else
+    ## Enable auto-execution of functions.
+    typeset -ga preexec_functions
+    typeset -ga precmd_functions
+    typeset -ga chpwd_functions
 
-# Append git functions needed for prompt.
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
+    # Append git functions needed for prompt.
+    preexec_functions+='preexec_update_git_vars'
+    precmd_functions+='precmd_update_git_vars'
+    chpwd_functions+='chpwd_update_git_vars'
+fi
 
 ## Function definitions
 function preexec_update_git_vars() {
