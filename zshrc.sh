@@ -4,7 +4,7 @@
 export __GIT_PROMPT_DIR=~/.zsh/git-prompt
 
 # Change to true if you are using a mac with the macport version of zsh
-local isMac=false
+local isMac=true
 
 # Initialize colors.
 autoload -U colors
@@ -70,6 +70,6 @@ function prompt_git_info() {
 }
 
 # Set the prompt.
-PROMPT='%B%m%~%b$(prompt_git_info) %# '
+#PROMPT='%B%m%~%b$(prompt_git_info) %# '
 # for a right prompt:
 # RPROMPT='%b$(prompt_git_info)'
