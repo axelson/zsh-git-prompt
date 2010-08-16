@@ -41,6 +41,9 @@ function preexec_update_git_vars() {
         git*)
         __EXECUTED_GIT_COMMAND=1
         ;;
+        tig*)
+        __EXECUTED_GIT_COMMAND=1
+        ;;
     esac
 }
 
