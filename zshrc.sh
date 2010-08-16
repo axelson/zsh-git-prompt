@@ -4,7 +4,7 @@
 export __GIT_PROMPT_DIR=~/.zsh/git-prompt
 
 # Change to true if you are using a mac with the macport version of zsh
-local isMac=true
+local isMac=false
 
 # Initialize colors.
 autoload -U colors
